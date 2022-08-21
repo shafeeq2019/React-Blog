@@ -7,26 +7,20 @@ onClick = {
 	} 
 } : using anonymous function to set a reference to a function with param
  */
-import { useState } from 'react';
+import { useState } from 'react'; //useState hook to provide reactive value with its setter
+import BlogList from './BlogList';
+const data = require('./data.json');
+
 const Home = () => {
-	const [blogs, setBlogs] = useState([
-		{ title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
-    { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
-    { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
-	]);
+	const [blogs, setBlogs] = useState(data);
+
+	const handleDelete = (id) => {
+		setBlogs(blogs.filter(b => b.id !== id));
+	}
+
 	return (
 		<div className="content">
-			{
-				blogs.map(b => {
-					return (
-					<div className="blog-preview" key={b.id}>
-						<h2>{b.title}</h2>
-						<p>written by {b.author}</p>
-						</div>
-					)
-				})
-			}
-
+			<BlogList blogs={blogs} title={"All Blogs!"} handleDelete={handleDelete}></BlogList>
 		</div>
 	);
 }
