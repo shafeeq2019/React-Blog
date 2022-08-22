@@ -7,6 +7,10 @@ const useFetch = (url) => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState();
 
+	/*
+	useEffect hook runs a function every render of the components.
+	The component renders initially when it first loads and it also happens when the state changes.
+	*/
 	useEffect(() => {
 		fetchData(url)
 			.then((res) => {
