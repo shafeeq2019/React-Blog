@@ -7,34 +7,22 @@ onClick = {
 	} 
 } : using anonymous function to set a reference to a function with param
  */
-import { useState, useEffect } from 'react'; //useState hook to provide reactive value with its setter
+
 import BlogList from './BlogList';
+import useFetch from './useFetch.js';
 
 const Home = () => {
-	const [blogs, setBlogs] = useState();
-	const [isLoading, setIsLoading] = useState(true);
-
-	useEffect(() => {
-		fetchData().then((data) => {
-			setIsLoading(false);
-			setBlogs(data);
-		})
-	}, [])
-
-	const fetchData = async () => {
-		const res = await fetch('http://localhost:8000/blogs');
-		return res.json();
-	}
-
+	const { data: blogs, isLoading, error } = useFetch("http://localhost:8000/blogs");
 	const handleDelete = (id) => {
-		setBlogs(blogs.filter(b => b.id !== id));
+		// setBlogs(blogs.filter(b => b.id !== id));
 	}
 
 	//condetional templation in React 
 	return (
 		<div className="content">
 			{isLoading && <div>Loading..</div>}
-			{blogs && <BlogList blogs={blogs} title={"All Blogs!"} handleDelete={handleDelete}></BlogList>}
+			{error && <div>Error: {error} </div>}
+			{blogs && <BlogList blogs={blogs} title={blogs.length > 0 ? "All Blogs!" : "There is no blogs!"} handleDelete={handleDelete}></BlogList>}
 		</div>
 	);
 }
