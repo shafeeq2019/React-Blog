@@ -13,16 +13,13 @@ import useFetch from './useFetch.js';
 
 const Home = () => {
 	const { data: blogs, isLoading, error } = useFetch("http://localhost:8000/blogs");
-	const handleDelete = (id) => {
-		// setBlogs(blogs.filter(b => b.id !== id));
-	}
 
 	//condetional templation in React 
 	return (
 		<div className="content">
 			{isLoading && <div>Loading..</div>}
 			{error && <div>Error: {error} </div>}
-			{blogs && <BlogList blogs={blogs} title={blogs.length > 0 ? "All Blogs!" : "There is no blogs!"} handleDelete={handleDelete}></BlogList>}
+			{blogs && <BlogList blogs={blogs} title={blogs.length > 0 ? "All Blogs!" : "There is no blogs!"} ></BlogList>}
 		</div>
 	);
 }
