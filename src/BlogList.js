@@ -1,4 +1,5 @@
-const BlogList = ({ blogs, title }) => {
+import { useNavigate, useParams } from 'react-router-dom';
+const BlogList = ({ blogs, title, parentCallback }) => {
 	const testFunc = (e, blogBody) => {
 		console.log(e);
 	}
@@ -14,7 +15,10 @@ const BlogList = ({ blogs, title }) => {
 						}}>
 							<h2>{b.title}</h2>
 							<p>written by {b.author}</p>
-							<button className="delete-button">delete blog</button>
+							<button className="delete-button" onClick={async () => {
+								await fetch(`http://localhost:8000/blogs/${b.id}`, {method: "delete"});
+								parentCallback();
+							}}>delete blog</button>
 						</div>
 					)
 				})

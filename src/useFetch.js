@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'; //useState hook to provide reactive
 
 // this is a custom hook
 // custom hooks need to start with the word "use"
-const useFetch = (url) => {
+const useFetch = (url, trigger) => {
 	const [data, setData] = useState();
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState();
@@ -23,7 +23,7 @@ const useFetch = (url) => {
 				setError(e.message);
 				setData();
 			});
-	}, [url]);
+	}, [url, trigger]);
 
 	return { data, isLoading, error };
 }
