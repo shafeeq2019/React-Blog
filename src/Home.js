@@ -16,7 +16,7 @@ const Home = () => {
 
 	//condetional templation in React 
 	return (
-		<div className="content">
+		<div className="home">
 			{isLoading && <div>Loading..</div>}
 			{error && <div>Error: {error} </div>}
 			{blogs && <BlogList blogs={blogs} title={blogs.length > 0 ? "All Blogs!" : "There is no blogs!"} ></BlogList>}

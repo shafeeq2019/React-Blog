@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import useFetch from './useFetch';
+
 const BlogList = ({ blogs, title }) => {
 	const testFunc = (e, blogBody) => {
 		console.log(e);
@@ -12,9 +15,12 @@ const BlogList = ({ blogs, title }) => {
 						<div className="blog-preview" key={b.id} onClick={(e) => {
 							testFunc(e, b.body);
 						}}>
-							<h2>{b.title}</h2>
-							<p>written by {b.author}</p>
-							<button className="delete-button">delete blog</button>
+							<Link to={`/blogs/${b.id}`} style={
+								{ textDecoration: "none" }
+							}>
+								<h2>{b.title}</h2>
+								<p>written by {b.author}</p>
+							</Link>
 						</div>
 					)
 				})
