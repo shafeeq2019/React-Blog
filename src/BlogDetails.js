@@ -1,10 +1,18 @@
 import { useParams } from "react-router-dom";
-import useFetch
-	from "./useFetch";
+import { useNavigate } from 'react-router-dom';
+import useFetch from "./useFetch";
+
 const BlogDetails = () => {
 	const { id } = useParams();
+	const navigate = useNavigate();
+
 	const { data: blog, isLoading, error } = useFetch(`http://localhost:8000/blogs/${id}`);
-	console.log(id);
+
+	const handleClick = async () => {
+		await fetch(`http://localhost:8000/blogs/${id}`, { method: 'DELETE' }).then(() => {
+			navigate("/", { replace: true });
+		})
+	}
 
 	return (
 		<div>
@@ -16,6 +24,7 @@ const BlogDetails = () => {
 						<h2>{blog.title}</h2>
 						<p>written by {blog.author}</p>
 						<div>{blog.body}</div>
+						<button className="functional-button" onClick={handleClick}>Delete</button>
 					</article>
 				}
 			</div>

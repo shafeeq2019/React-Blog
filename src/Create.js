@@ -51,8 +51,8 @@ const Create = () => {
 					<option value="Yasser">Yasser</option>
 					<option value="Omar">Omar</option>
 				</select>
-				{!isLoading && <button>Add Blog</button>}
-				{isLoading && <button disabled>Adding Blog ..</button>}
+				{!isLoading && <button className="functional-button">Add Blog</button>}
+				{isLoading && <button disabled className="functional-button">Adding Blog ..</button>}
 			</form>
 		</div>
 	);
