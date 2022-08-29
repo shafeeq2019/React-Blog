@@ -1,11 +1,12 @@
 import { useState } from "react";
-
+import { useNavigate } from 'react-router-dom';
 
 const Create = () => {
 	const [title, setTitle] = useState('');
 	const [body, setBody] = useState('');
 	const [author, setAuthor] = useState('Shafeeq');
 	const [isLoading, setLoading] = useState(false);
+	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -15,10 +16,12 @@ const Create = () => {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(blog)
-		}).then(() => {
-			setLoading(false);
-			console.log("New Blog added");
-		});
+		})
+			.then(() => {
+				setLoading(false);
+				console.log("New Blog added");
+				navigate("/", { replace: true });
+			});
 	}
 
 
