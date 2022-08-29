@@ -3,6 +3,7 @@ import Home from './Home.js';
 import Create from './Create.js';
 import BlogDetails from './BlogDetails.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import NotFound from './NotFound.js';
 
 /*
 <Routes></Routes> is the elment that surround all of the routes and it there to make sure that only 
@@ -19,6 +20,7 @@ function App() {
 						<Route exact path='/' element={<Home></Home>}></Route>
 						<Route exact path='/create' element={<Create></Create>}></Route>
 						<Route exact path='/blogs/:id' element={<BlogDetails></BlogDetails>}></Route>
+						<Route path='*' element={<NotFound></NotFound>}></Route>
 					</Routes>
 				</div>
 			</div>
